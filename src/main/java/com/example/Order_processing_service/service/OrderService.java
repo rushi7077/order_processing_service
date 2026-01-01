@@ -11,17 +11,20 @@ import java.util.List;
 @Service
 public class OrderService {
 
-    @Autowired
-    OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
 
-    public Order createOrder(OrderRequest request){
-        Order order = new Order();
+    public OrderService(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
+
+    public Order createOrder(OrderRequest request) {
+        Order order = new Order(); // NEW entity per request
         order.setCustomerEmail(request.getCustomerEmail());
         return orderRepository.save(order);
     }
 
-    public List<Order> getAllOrders(){
+    public List<Order> getAllOrders() {
         return orderRepository.findAll();
     }
-
 }
+

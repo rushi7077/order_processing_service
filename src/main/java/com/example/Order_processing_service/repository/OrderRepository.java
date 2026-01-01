@@ -4,11 +4,11 @@ import com.example.Order_processing_service.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.List;
 
 @Repository
-public interface OrderRepository extends JpaRepository {
+public interface OrderRepository extends JpaRepository<Order,Long> {
 
-    Optional<Order> findByStatus(String status);
+    List<Order> findByStatus(String status);
 
 }
